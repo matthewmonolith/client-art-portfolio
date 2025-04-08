@@ -1,24 +1,44 @@
 @import "tailwindcss";
 
-
 body {
-    background-color: #f1f7fc;
+  background-color: #f1f7fc;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .masonry-grid {
-    display: -webkit-box; /* Not needed if autoprefixing */
-    display: -ms-flexbox; /* Not needed if autoprefixing */
-    display: flex;
-    margin-left: -30px; /* gutter size offset */
-    width: auto;
-  }
-  .masonry-grid_column {
-    padding-left: 30px; /* gutter size */
-    background-clip: padding-box;
-  }
-  
-  /* Style your items */
-  .masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
-    background: grey;
-    margin-bottom: 30px;
-  }
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px;
+  width: auto;
+}
+.masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+.masonry-grid_column > div {
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.masonry-grid_column > div:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.masonry-grid_column > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.masonry-grid_column > div:nth-child(3) {
+  animation-delay: 0.3s;
+}

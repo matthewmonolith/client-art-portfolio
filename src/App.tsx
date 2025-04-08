@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Gallery from "./pages/Gallery";
+import MainAppContainer from "./components/MainAppContainer";
 
 function App() {
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
@@ -11,11 +12,11 @@ function App() {
     <BrowserRouter>
       <div className="flex h-screen">
         <Sidebar opened={isSidebarOpened} handleOnClick={handleOnClick} />
-        <main className="flex-1 m-3 overflow-auto">
+        <MainAppContainer>
           <Routes>
             <Route path="/" element={<Gallery />} />
           </Routes>
-        </main>
+        </MainAppContainer>
       </div>
     </BrowserRouter>
   );

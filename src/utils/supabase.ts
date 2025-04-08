@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import type { FileObject } from "@supabase/storage-js";
 
 const BUCKET_NAME = "arts-bucket";
 
@@ -20,9 +19,6 @@ export const fetchImages = async (): Promise<string[] | null> => {
   const urls: string[] = data.map((file) => {
     return supabase.storage.from("arts-bucket").getPublicUrl(file.name).data
       .publicUrl;
-  });
-
-  console.log(urls);
-  
+  });  
   return urls;
 };
