@@ -32,7 +32,7 @@ function Sidebar({
         </Link>
       </aside>
       <div
-        className={`bg-pink-300 h-10 w-10 flex items-center justify-center cursor-pointer text-white mt-2 transition-all duration-300 z-20 ${
+        className={`bg-pink-300 h-10 w-10 flex items-center justify-center cursor-pointer text-white mt-2 transition-all duration-300 z-20 rounded-tr-md rounded-br-md ${
           opened ? "ml-16" : "ml-0"
         }`}
         onClick={handleOnClick}
