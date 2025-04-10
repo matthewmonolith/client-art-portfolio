@@ -2,6 +2,7 @@ import Masonry from "react-masonry-css";
 import { fetchImages } from "../utils/supabase";
 import { useEffect, useState } from "react";
 import ImageContainer from "../components/ImageContainer";
+import type { ImageData } from "../utils/types";
 
 const breakpointColumnsObj = {
   default: 4,
@@ -11,21 +12,21 @@ const breakpointColumnsObj = {
 };
 
 function Gallery() {
-  const [images, setImages] = useState<string[] | null>(null);
+  const [images, setImages] = useState<ImageData[] | null>(null);
 
+
+  
   useEffect(() => {
-    const loadBucket = async () => {
-      const res = await fetchImages();
-      console.log("fetching images");
-
-      setImages(res);
+    const loadImages = async () => {
+      const res = await fetchImages()
+      setImages(res)
     };
 
-    loadBucket();
+    loadImages();
   }, []);
 
-  const renderedImages = images?.map((u) => {
-    return <ImageContainer url={u} />;
+  const renderedImages = images?.map((img) => {
+    return <ImageContainer url={img.image} />;
   });
 
   return (
