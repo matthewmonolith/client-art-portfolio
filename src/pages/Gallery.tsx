@@ -12,21 +12,25 @@ const breakpointColumnsObj = {
 };
 
 function Gallery() {
-  const [images, setImages] = useState<ImageData[] | null>(null);
+  const [images, setImages] = useState<ImageData[] | null >(null);
+  const [allTags, setAllTags] = useState<string[] | null | undefined>(null);
+  // const [hoverIndex, setHoverIndex] = useState<number | null>(null)
 
-
-  
   useEffect(() => {
     const loadImages = async () => {
-      const res = await fetchImages()
-      setImages(res)
+      const res = await fetchImages();
+
+      const tagsArr = res?.map(img => img.tags.split(',')).flat().filter((t, i, a) => a.indexOf(t) == i)
+
+      setImages(res);
+      setAllTags(tagsArr)
     };
 
     loadImages();
   }, []);
 
   const renderedImages = images?.map((img) => {
-    return <ImageContainer url={img.image} />;
+    return <ImageContainer img={img}/>;
   });
 
   return (
