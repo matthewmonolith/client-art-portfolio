@@ -1,8 +1,15 @@
 import Masonry from "react-masonry-css";
 import { fetchImages } from "../utils/supabase";
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import ImageContainer from "../components/ImageContainer";
-import type { ImageData } from "../utils/types";
+import Tags from "../components/tags/Tags";
+
+import {
+  GalleryContext,
+  SET_ALL_TAGS,
+  SET_IMAGES,
+} from "../context/GalleryContext";
+import { ImageData } from "../utils/types";
 
 const breakpointColumnsObj = {
   default: 4,
@@ -12,35 +19,46 @@ const breakpointColumnsObj = {
 };
 
 function Gallery() {
-  const [images, setImages] = useState<ImageData[] | null >(null);
-  const [allTags, setAllTags] = useState<string[] | null | undefined>(null);
-  // const [hoverIndex, setHoverIndex] = useState<number | null>(null)
+  const { dispatch, images, tags, hoverIndex } = useContext(GalleryContext);
 
   useEffect(() => {
-    const loadImages = async () => {
+    const init = async () => {
       const res = await fetchImages();
 
-      const tagsArr = res?.map(img => img.tags.split(',')).flat().filter((t, i, a) => a.indexOf(t) == i)
+      const tagsArr = res
+        ?.map((img) => img.tags.split(","))
+        .flat()
+        .filter((t, i, a) => a.indexOf(t) == i);
 
-      setImages(res);
-      setAllTags(tagsArr)
+      dispatch({
+        type: SET_IMAGES,
+        payload: res,
+      });
+
+      dispatch({
+        type: SET_ALL_TAGS,
+        payload: tagsArr,
+      });
     };
 
-    loadImages();
-  }, []);
+    init();
+  }, [dispatch]);
 
-  const renderedImages = images?.map((img) => {
-    return <ImageContainer img={img}/>;
+  const renderedImages = images?.map((img: ImageData) => {
+    return <ImageContainer img={img} key={img.image}/>;
   });
 
   return (
-    <Masonry
-      breakpointCols={breakpointColumnsObj}
-      className="masonry-grid"
-      columnClassName="masonry-grid_column"
-    >
-      {renderedImages}
-    </Masonry>
+    <>
+      <Tags tags={tags}/>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="masonry-grid"
+        columnClassName="masonry-grid_column"
+      >
+        {renderedImages}
+      </Masonry>
+    </>
   );
 }
 export default Gallery;
