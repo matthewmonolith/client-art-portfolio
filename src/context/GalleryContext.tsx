@@ -3,11 +3,13 @@ import { createContext, useReducer } from "react";
 export const SET_IMAGES = "SET_IMAGES";
 export const SET_ALL_TAGS = "SET_ALL_TAGS";
 export const SET_HOVER_INDEX = "SET_HOVER_INDEX";
+export const SET_FILTER = 'SET_FILTER'
 
 const initialState = {
   images: [],
   tags: [],
   hoverIndex: -1,
+  filter: ''
 };
 
 const reducer = (state: typeof initialState, action: any) => {
@@ -18,6 +20,8 @@ const reducer = (state: typeof initialState, action: any) => {
       return { ...state, tags: action.payload };
     case SET_HOVER_INDEX:
       return { ...state, hoverIndex: action.payload };
+    case SET_FILTER:
+      return {...state, filter: action.payload}
     default:
       return state;
   }
