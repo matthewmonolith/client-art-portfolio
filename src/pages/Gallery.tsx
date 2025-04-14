@@ -19,7 +19,7 @@ const breakpointColumnsObj = {
 };
 
 function Gallery() {
-  const { dispatch, images, tags, hoverIndex } = useContext(GalleryContext);
+  const { dispatch, tags, hoverIndex, filteredImages } = useContext(GalleryContext);
 
   useEffect(() => {
     const init = async () => {
@@ -44,7 +44,7 @@ function Gallery() {
     init();
   }, [dispatch]);
 
-  const renderedImages = images?.map((img: ImageData) => {
+  const renderedImages = filteredImages?.map((img: ImageData) => {
     return <ImageContainer img={img} key={img.image}/>;
   });
 
