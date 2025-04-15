@@ -23,8 +23,8 @@ const initialState: {
 
 const reducer = (state: typeof initialState, action: any) => {
   switch (action.type) {
-    case SET_IMAGES:
-      return { ...state, images: action.payload };
+    case SET_IMAGES:  
+      return { ...state, images: action.payload, filteredImages: action.payload };
     case SET_ALL_TAGS:
       return { ...state, tags: action.payload };
     case SET_HOVER_INDEX:
@@ -38,7 +38,6 @@ const reducer = (state: typeof initialState, action: any) => {
             img.tags.split(",").includes(toggledFilter)
           )
         : state.images;
-
       return {
         ...state,
         filter: toggledFilter,
