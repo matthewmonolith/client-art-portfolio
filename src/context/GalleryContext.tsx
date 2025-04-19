@@ -1,4 +1,4 @@
-import { act, createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { ImageData } from "../utils/types";
 
 export const SET_IMAGES = "SET_IMAGES";
