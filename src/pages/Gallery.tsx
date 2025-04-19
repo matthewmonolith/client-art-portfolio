@@ -19,7 +19,7 @@ const breakpointColumnsObj = {
 };
 
 function Gallery() {
-  const { dispatch, tags, hoverIndex, filteredImages } = useContext(GalleryContext);
+  const { dispatch, tags, filteredImages } = useContext(GalleryContext);
 
   useEffect(() => {
     const init = async () => {

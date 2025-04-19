@@ -11,13 +11,13 @@ const initialState: {
   images: ImageData[];
   filteredImages: ImageData[];
   tags: string[];
-  hoverIndex: number;
+  // hoverIndex: number;
   filter: string;
 } = {
   images: [],
   filteredImages: [],
   tags: [],
-  hoverIndex: -1,
+  // hoverIndex: -1,
   filter: "",
 };
 
@@ -27,8 +27,8 @@ const reducer = (state: typeof initialState, action: any) => {
       return { ...state, images: action.payload, filteredImages: action.payload };
     case SET_ALL_TAGS:
       return { ...state, tags: action.payload };
-    case SET_HOVER_INDEX:
-      return { ...state, hoverIndex: action.payload };
+    // case SET_HOVER_INDEX:
+    //   return { ...state, hoverIndex: action.payload };
     case SET_FILTER_AND_FILTER_IMAGES: {
       const toggledFilter =
         state.filter === action.payload ? "" : action.payload;

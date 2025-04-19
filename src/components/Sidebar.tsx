@@ -1,5 +1,6 @@
-import { IoColorPalette, IoPersonSharp } from "react-icons/io5";
+import { IoColorPalette } from "react-icons/io5";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 function Sidebar({
@@ -24,15 +25,15 @@ function Sidebar({
         >
           <IoColorPalette />
         </Link>
-        <Link
-          to="/contact"
+        <a
+          href="https://x.com/yeoubibim"
+          target="_blank"
+          rel="noopener noreferrer"
           className="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-pink-300 hover:bg-white"
         >
-          <IoPersonSharp />
-        </Link>
+          <BsTwitterX />
+        </a>
       </aside>
-
-      {/* Toggle Button */}
       <div
         className={`fixed top-2 left-0 transition-all duration-300 z-20 ${
           opened ? "ml-16" : "ml-0"
